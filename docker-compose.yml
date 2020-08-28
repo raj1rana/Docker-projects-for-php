@@ -1,0 +1,32 @@
+web:
+    build: ./.docker/.
+    ports:
+        - "8001:80"
+    links:
+        - db
+        - phpmyadmin
+    volumes:
+        - .:/var/www/html
+    command: bash -c "cd/var/www"
+
+db:
+    image: mysql:5.7
+    ports:
+        - "8006:3306"
+    environment:
+        MYSQL_DATABASE: laravel
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: root
+
+
+phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+        - db:db
+    ports:
+        - 8000:80
+    environment:
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: root
