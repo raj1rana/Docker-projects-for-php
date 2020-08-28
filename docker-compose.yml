@@ -30,3 +30,13 @@ phpmyadmin:
         MYSQL_USER: root
         MYSQL_PASSWORD: root
         MYSQL_ROOT_PASSWORD: root
+phpmyadmin2:
+    image: phpmyadmin/phpmyadmin
+    links:
+        - db:db
+    ports:
+        - 8000:80
+    environment:
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: root
